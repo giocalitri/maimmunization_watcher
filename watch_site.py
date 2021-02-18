@@ -27,10 +27,10 @@ def watch_mass_immunization(site_name: str, site_url: str):
     try:
         resp = requests.get(site_url)
     except Exception:
-        print_with_time(f"=====> Error requesting from site {site_name}")
+        print_with_time(f"==> Error requesting from site {site_name}")
 
     if not resp.ok:
-        print_with_time(f"=====> Error {resp.status_code} from site {site_name}")
+        print_with_time(f"==> Error {resp.status_code} from site {site_name}")
         return
     minified = htmlmin.minify(resp.text, remove_empty_space=True)
     soup = BeautifulSoup(minified, 'html.parser')
