@@ -15,6 +15,10 @@ from bs4 import BeautifulSoup
 import urls
 
 
+class WaitMore(Exception):
+    pass
+
+
 def print_with_time(text: str):
     print(f"{datetime.datetime.now()} - {text}")
 
@@ -28,10 +32,11 @@ def watch_mass_immunization(site_name: str, site_url: str):
         resp = requests.get(site_url)
     except Exception:
         print_with_time(f"==> Error requesting from site {site_name}")
+        raise WaitMore()
 
     if not resp.ok:
         print_with_time(f"==> Error {resp.status_code} from site {site_name}")
-        return
+        raise WaitMore()
     minified = htmlmin.minify(resp.text, remove_empty_space=True)
     soup = BeautifulSoup(minified, 'html.parser')
     all_availability = soup.body.find_all('strong', text=re.compile("Available Appointments"))
@@ -68,8 +73,12 @@ def watch_mass_immunization(site_name: str, site_url: str):
 def watch_locations():
     while True:
         for site_name, site_address in urls.ALL_SITES.items():
-            watch_mass_immunization(site_name, site_address)
-        time.sleep(3)
+            try:
+                watch_mass_immunization(site_name, site_address)
+                time.sleep(2)
+            except WaitMore:
+                time.sleep(10)
+        time.sleep(5)
 
 
 if __name__ == "__main__":
