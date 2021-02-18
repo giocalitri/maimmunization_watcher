@@ -49,6 +49,8 @@ def watch_mass_immunization(site_name: str, site_url: str):
         except ValueError:
             print_with_time(f'wrong number of spots {number_of_spots} for {location_name}')
             continue
+        if number_of_spots <= 0:
+            continue
         link_node = location.parent.parent.find('a')
         if not link_node:
             print_with_time(f'wrong link node for {location_name}')
@@ -77,8 +79,8 @@ def watch_locations():
                 watch_mass_immunization(site_name, site_address)
                 time.sleep(2)
             except WaitMore:
-                time.sleep(10)
-        time.sleep(5)
+                time.sleep(15)
+        time.sleep(10)
 
 
 if __name__ == "__main__":
