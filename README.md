@@ -26,6 +26,11 @@ but you might need to run `pip3` as superuser.
 > pip install -r requirements.txt
 ```
 
+If for any reason the installation of the requirements fails, try to install the strict dependencies only:
+```shell
+> pip install beautifulsoup4 requests htmlmin
+````
+
 ### How to use 🔧
 
 ```shell
