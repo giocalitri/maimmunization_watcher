@@ -23,11 +23,11 @@ def print_with_time(text: str):
     print(f"{datetime.datetime.now()} - {text}")
 
 
-def watch_mass_immunization(site_name: str, site_url: str):
+def watch_mass_immunization(site_name: str, site_url: str, page: int = 1):
     """
     Watches the mass immunization site
     """
-    print_with_time(f"============= {site_name}")
+    print_with_time(f"============= {site_name} page {page}")
     try:
         resp = requests.get(site_url)
     except Exception:
@@ -70,6 +70,29 @@ def watch_mass_immunization(site_name: str, site_url: str):
 
         if number_of_spots > 0:
             print_with_time(f"{location_name} {number_of_spots} {full_url}")
+
+    # try to see if there are more pages for the same query
+    pagination_spans = soup.body.find_all('span', attrs={'class': 'page'})
+    for pagination in pagination_spans:
+        attr_class = pagination.attrs.get('class')
+        if len(attr_class) > 1:
+            continue
+        if attr_class[0] != 'page':
+            continue
+        if pagination.a.attrs.get('rel')[0] != 'next':
+            continue
+        # extract the next page link
+        a_link = pagination.a.attrs.get('href')
+        parsed_base_url = urlsplit(site_url)
+        next_page_full_url = urlunsplit((
+            parsed_base_url.scheme,
+            parsed_base_url.netloc,
+            a_link,
+            '',
+            '',
+        ))
+        time.sleep(2)
+        watch_mass_immunization(site_name=site_name, site_url=next_page_full_url, page=page + 1)
 
 
 def watch_locations():
