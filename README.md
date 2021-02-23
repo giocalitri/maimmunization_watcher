@@ -29,4 +29,5 @@ but you might need to run `pip3` them as superuser.
 ```
 
 #### Notes ⚠️
-- Remember to stop the script when not using it. There is throttling implemented, but you do not want your IP to get banned for running it for days straight!
+- Remember that, on Mac, Command ⌘ + Mouse Click opens the link directly in the browser
+- Remember to stop the script when not using it. There is throttling implemented, but you do not want your IP banneded for running it for days straight!
