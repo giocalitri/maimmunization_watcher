@@ -6,7 +6,7 @@ The MA Immunization website is simply horrible 🤦🏻‍♂️.
 
 The other websites that aggregate infos are OK, but they need to be refreshed 🤯.
 
-This project uses command line 🚀, makes a request every few seconds ⏰ and prints direct links in the terminal 🐚.
+This project uses command line 🚀, makes a request every few seconds ⏰ and prints in the terminal 🐚 direct links to the site to book an appointment for the available date. 
 
 Right now it supports the few locations closer to Boston: others can be added in `urls.py`. 
 

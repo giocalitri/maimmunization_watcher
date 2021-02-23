@@ -41,6 +41,7 @@ def watch_mass_immunization(site_name: str, site_url: str, page: int = 1):
     soup = BeautifulSoup(minified, 'html.parser')
     all_availability = soup.body.find_all('strong', text=re.compile("Available Appointments"))
 
+    appointmants_available = False
     for location in all_availability:
         location_name = location.parent.parent.contents[0].text.strip()
         number_of_spots = location.parent.contents[1].strip()
@@ -70,6 +71,10 @@ def watch_mass_immunization(site_name: str, site_url: str, page: int = 1):
 
         if number_of_spots > 0:
             print_with_time(f"{location_name} {number_of_spots} {full_url}")
+            appointmants_available = True
+
+    if not appointmants_available:
+        print_with_time("No Appointments available at this time for this location")
 
     # try to see if there are more pages for the same query
     pagination_spans = soup.body.find_all('span', attrs={'class': 'page'})
