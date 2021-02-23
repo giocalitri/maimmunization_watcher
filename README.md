@@ -12,13 +12,13 @@ Right now it supports the few locations closer to Boston: others can be added in
 
 ### Requirements 🛒
 Python 3 (2 is dead) is the only requirement.
-If you are not sure which python you are running, then try running 
+If you are not sure which python you are running, then try to run 
 ```shell
 > python --version
 ```
 If it says something like `2.7` you are probably running the system python. 
 In this case you will probably have also a `python3` and a `pip3` available, 
-but you might need to run `pip3` them as superuser.
+but you might need to run `pip3` as superuser.
 
 ### How to use 🔧
 ```shell
