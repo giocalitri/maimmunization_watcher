@@ -20,11 +20,15 @@ If it says something like `2.7` you are probably running the system python.
 In this case you will probably have also a `python3` and a `pip3` available, 
 but you might need to run `pip3` as superuser.
 
-### How to use 🔧
 ```shell
 > git clone https://github.com/giocalitri/maimmunization_watcher.git
 > cd maimmunization_watcher
 > pip install -r requirements.txt
+```
+
+### How to use 🔧
+
+```shell
 > python watch_site.py
 ```
 
