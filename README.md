@@ -11,7 +11,7 @@ This project uses command line 🚀, makes a request every few seconds ⏰ and p
 Right now it supports the few locations closer to Boston: others can be added in `urls.py`. 
 
 ### Requirements 🛒
-Python 3.6 (2 is dead) is the only requirement.
+Python 3.6+ (2 is dead) is the only requirement.
 If you are not sure which python you are running, then try to run 
 ```shell
 > python --version
